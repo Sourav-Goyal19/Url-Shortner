@@ -8,6 +8,8 @@ myRouter.get("/", async (req, res) => {
   console.log(urls);
   return res.status(200).render("Home", {
     urls: urls,
+    port: process.env.PORT,
+    loggedIn: req?.user ? true : false,
   });
 });
 

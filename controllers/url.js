@@ -15,12 +15,12 @@ async function handleGenerateUrl(req, res) {
     visitHistory: [],
     developedBy: req.user._id,
   });
-  const urls = await Url.find({ developedBy: req?.user?._id });
-  return res.render("Home", {
+  // const urls = await Url.find({ developedBy: req?.user?._id });
+  return res.render("NewUrl", {
     id: shortId,
-    urls: urls,
+    port: process.env.PORT,
   });
-} 
+}
 
 async function handleAnalytics(req, res) {
   const shortId = req.params.shortid;
