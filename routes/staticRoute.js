@@ -14,7 +14,7 @@ myRouter.get("/", async (req, res) => {
 });
 
 myRouter.get("/signup", (req, res) => {
-  return res.status(200).render("Signup");
+  return res.status(200).render("SignUp");
 });
 
 myRouter.get("/login", (req, res) => {
