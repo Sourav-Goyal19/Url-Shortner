@@ -17,6 +17,17 @@
             margin-top: 30px;
             text-align: center;
         }
+
+        *::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #666;
+            /* Color of the thumb */
+            border-radius: 5px;
+            /* Radius for the thumb corners */
+        }
     </style>
 </head>
 
@@ -48,41 +59,43 @@
             </form>
         </div>
 
-        <table class="table table-bordered">
-            <thead class="thead-dark">
-                <tr>
-                    <th>S.No</th>
-                    <th>Original website</th>
-                    <th>ID</th>
-                    <th>Numbers of visit</th>
-                    <th>Your New Short Website</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% locals.urls.map((url, index)=> { %>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
                     <tr>
-                        <td>
-                            <%= index + 1 %>
-                        </td>
-                        <td>
-                            <%= url.redirectUrl %>
-                        </td>
-                        <td>
-                            <%= url.shortId %>
-                        </td>
-                        <td>
-                            <%= url.visitHistory.length %>
-                        </td>
-                        <td>
-                            <a href="https://shortner.up.railway.app/url/<%= url.shortId %>" target="_blank"
-                                rel="noopener noreferrer">
-                                https://short.ner/url/<%= url.shortId %>
-                            </a>
-                        </td>
+                        <th>S.No</th>
+                        <th>Original website</th>
+                        <th>ID</th>
+                        <th>Numbers of visit</th>
+                        <th>Your New Short Website</th>
                     </tr>
-                    <% }) %>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <% locals.urls.map((url, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= url.redirectUrl %>
+                            </td>
+                            <td>
+                                <%= url.shortId %>
+                            </td>
+                            <td>
+                                <%= url.visitHistory.length %>
+                            </td>
+                            <td>
+                                <a href="https://shortner.up.railway.app/url/<%= url.shortId %>" target="_blank"
+                                    rel="noopener noreferrer">
+                                    https://short.ner/url/<%= url.shortId %>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
