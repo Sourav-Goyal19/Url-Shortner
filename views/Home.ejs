@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>URL Shortener</title>
+    <link rel="shortcut icon" href="/url-shortener.jpg" type="image/x-icon">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        table {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        *::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #666;
+            /* Color of the thumb */
+            border-radius: 5px;
+            /* Radius for the thumb corners */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-end align-items-center">
+            <% if (locals.loggedIn) { %>
+                <form action="/user/logout" method="post">
+                    <button type="submit" class="btn btn-outline-danger">Logout</button>
+                </form>
+                <% } else { %>
+                    <a style="margin-right: 10px;" href="/login">
+                        <button type="submit" class="btn btn-outline-primary">Login</button>
+                    </a>
+                    <a href="/signup">
+                        <button type="submit" class="btn btn-outline-primary">SignUp</button>
+                    </a>
+                    <% } %>
+        </div>
+        <h1>URL Shortener</h1>
+        <div>
+            <form action="/url" method="post">
+                <div class="form-group">
+                    <label for="urlInput">Enter your URL:</label>
+                    <input type="text" class="form-control" id="urlInput" name="url"
+                        placeholder="https://example.com" />
+                </div>
+                <button type="submit" class="btn btn-primary">Generate</button>
+            </form>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>S.No</th>
+                        <th>Original website</th>
+                        <th>ID</th>
+                        <th>Numbers of visit</th>
+                        <th>Your New Short Website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% locals.urls.map((url, index)=> { %>
+                        <tr>
+                            <td>
+                                <%= index + 1 %>
+                            </td>
+                            <td>
+                                <%= url.redirectUrl %>
+                            </td>
+                            <td>
+                                <%= url.shortId %>
+                            </td>
+                            <td>
+                                <%= url.visitHistory.length %>
+                            </td>
+                            <td>
+                                <a href="https://shortner.up.railway.app/url/<%= url.shortId %>" target="_blank"
+                                    rel="noopener noreferrer">
+                                    https://shortner.up.railway.app/url/<%= url.shortId %>
+                                </a>
+                            </td>
+                        </tr>
+                        <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
