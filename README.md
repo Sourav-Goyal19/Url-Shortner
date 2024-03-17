@@ -4,7 +4,7 @@ Welcome to the URL Shortener! This web application allows users to shorten long 
 
 ## Getting Started
 
-To start using the URL Shortener, visit [https://shortner.up.railway.app/](https://shortner.up.railway.app/) in your web browser.
+To start using the URL Shortener, visit [here][(https://url-shortner-z469.onrender.com)] in your web browser.
 
 ## Features
 
